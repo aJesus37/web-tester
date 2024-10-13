@@ -1,0 +1,14 @@
+# Create a postgres database, initializing it with the content from the db folder
+version: '3.1'
+
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./internal/database/init:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_DB: events
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+    ports:
+      - "5432:5432"
